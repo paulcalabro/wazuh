@@ -96,8 +96,11 @@ ID: 80200 - 80499
         <description>Guard Duty Findings.</description>
     </rule>
 
+    <!-- Guard Duty Sample Findings -->
+
     <rule id="80301" level="3">
-        <if_sid>80300</if_sid>
+        <decoded_as>json</decoded_as>
+        <field name="aws.source">guardduty</field>
         <field name="aws.service.additionalInfo.sample">true</field>
         <description>Guard Duty Sample Finding: $(aws.title)</description>
     </rule>
