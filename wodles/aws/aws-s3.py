@@ -487,7 +487,9 @@ class AWSBucket(WazuhIntegration):
                     else:
                         pass
                         # If it's not an array of list/dict, then it's likely a string, so leave as is
-        
+                elif isinstance(value, dict):
+                    reformat_for_json_decoder(my_event[name])
+
         # turn some list fields into dictionaries
         reformat_for_json_decoder(event)
 
