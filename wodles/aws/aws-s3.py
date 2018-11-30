@@ -472,18 +472,10 @@ class AWSBucket(WazuhIntegration):
                 if isinstance(value, list) and len(value) == 1:
                     my_event[name] = value[0]
                 elif isinstance(value, list) and len(value) > 1:
-                    if isinstance(value[0], (list, dict)):
-                        # Cast array of lists/dict/objects to string
-                        try:
-                            # Try to pretty the string, assuming it is json
-                            my_event[name] = {'string': json.dumps(
-                                value,
-                                ensure_ascii=True,
-                                indent=2,
-                                sort_keys=True)}
-                        except:
-                            # Fallback; just print as string
-                            my_event[name] = {'string': str(value)}
+                    for i in range(len(value)):
+                        print("evento!")
+                        my_event[name].append({i: value[i]})
+                        print("my_event -> " + str(my_event))
                     else:
                         pass
                         # If it's not an array of list/dict, then it's likely a string, so leave as is
