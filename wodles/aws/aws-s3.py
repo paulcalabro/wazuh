@@ -472,13 +472,11 @@ class AWSBucket(WazuhIntegration):
                 if isinstance(value, list) and len(value) == 1:
                     my_event[name] = value[0]
                 elif isinstance(value, list) and len(value) > 1:
-                    my_event[name] = []
+                    my_event[name] = {}
                     for i in range(len(value)):
-                        my_event[name].append({i: value[i]})
-                        print("my_event -> " + str(my_event))
-                    else:
-                        pass
-                        # If it's not an array of list/dict, then it's likely a string, so leave as is
+                        my_event[name][str(i)] = value[i]
+                        #my_event[name].append({i: value[i]})
+                    print("event -> " + str(my_event[name]))
                 elif isinstance(value, dict):
                     reformat_for_json_decoder(my_event[name])
 
