@@ -472,8 +472,8 @@ class AWSBucket(WazuhIntegration):
                 if isinstance(value, list) and len(value) == 1:
                     my_event[name] = value[0]
                 elif isinstance(value, list) and len(value) > 1:
+                    my_event[name] = []
                     for i in range(len(value)):
-                        print("evento!")
                         my_event[name].append({i: value[i]})
                         print("my_event -> " + str(my_event))
                     else:
