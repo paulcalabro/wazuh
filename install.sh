@@ -280,33 +280,6 @@ UseSSLCert()
 }
 
 ##########
-# EnableAuthd()
-##########
-EnableAuthd()
-{
-    # Authd config
-    NB=$1
-    echo ""
-    $ECHO "  $NB - ${runauthd} ($yes/$no) [$no]: "
-    if [ "X${USER_ENABLE_AUTHD}" = "X" ]; then
-        read AS
-    else
-        AS=${USER_ENABLE_AUTHD}
-    fi
-    echo ""
-    case $AS in
-        $yesmatch)
-            AUTHD="yes"
-            echo "   - ${yesrunauthd}."
-            ;;
-        *)
-            AUTHD="no"
-            echo "   - ${norunauthd}."
-            ;;
-    esac
-}
-
-##########
 # ConfigureBoot()
 ##########
 ConfigureBoot()
@@ -580,7 +553,6 @@ ConfigureServer()
 
     # Setting up the auth daemon & logs
     if [ "X$INSTYPE" = "Xserver" ]; then
-        EnableAuthd "3.7"
         ConfigureBoot "3.8"
         SetupLogs "3.9"
         WriteManager
